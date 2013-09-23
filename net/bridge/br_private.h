@@ -789,6 +789,9 @@ extern int br_set_max_age(struct net_bridge *br, unsigned long x);
 extern void br_stp_enable_bridge(struct net_bridge *br);
 extern void br_stp_disable_bridge(struct net_bridge *br);
 extern void br_stp_set_enabled(struct net_bridge *br, unsigned long val);
+#ifdef CONFIG_TRILL
+extern void br_trill_set_enabled(struct net_bridge *br, unsigned long val);
+#endif
 extern void br_stp_enable_port(struct net_bridge_port *p);
 extern void br_stp_disable_port(struct net_bridge_port *p);
 extern bool br_stp_recalculate_bridge_id(struct net_bridge *br);

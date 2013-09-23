@@ -462,6 +462,11 @@ extern void br_flood_deliver(struct net_bridge *br, struct sk_buff *skb,
 			     bool unicast);
 extern void br_flood_forward(struct net_bridge *br, struct sk_buff *skb,
 			     struct sk_buff *skb2, bool unicast);
+#ifdef CONFIG_TRILL
+extern void br_flood_deliver_vif(struct net_bridge *br, struct sk_buff *skb);
+extern void br_flood_forward_nic(struct net_bridge *br, struct sk_buff *skb,
+					   struct sk_buff *skb2);
+#endif
 
 /* br_if.c */
 extern void br_port_carrier_check(struct net_bridge_port *p);
@@ -477,6 +482,7 @@ extern netdev_features_t br_features_recompute(struct net_bridge *br,
 	netdev_features_t features);
 
 /* br_input.c */
+extern int rbr_handle_ether_frame_finish(struct sk_buff *skb);
 extern int br_handle_frame_finish(struct sk_buff *skb);
 extern rx_handler_result_t br_handle_frame(struct sk_buff **pskb);
 
